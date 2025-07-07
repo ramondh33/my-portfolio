@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramon Hernandez | Portfolio</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0a0f19',       // deep indigo
+            text: '#fefefe',
+            soft: '#1c2431',
+            accent1: '#ff6b00',  // mango-orange
+            accent2: '#00d4ff'   // electric cyan
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- JS Render Logic -->
+  <script src="script.js" defer></script>
+</head>
+<body class="bg-bg text-text font-sans transition-colors duration-300">
+
+  <!-- Theme Toggle -->
+  <div class="fixed top-4 right-4 z-50 flex items-center space-x-2">
+    <button id="themeBtn" class="p-2 rounded bg-soft hover:bg-accent2 transition">🌙</button>
+    <span id="themeLabel" class="text-sm">Dark Mode</span>
+  </div>
+
+  <!-- Header -->
+  <header class="py-10 bg-bg border-b border-white/10 text-center">
+  <h1 class="text-4xl sm:text-5xl font-bold text-accent1">Ramon Hernandez</h1>
+  <p class="mt-2 text-sm sm:text-base text-text/70">
+    IT Support &nbsp;•&nbsp; Full-Stack Development &nbsp;•&nbsp; System Administration
+  </p>
+</header>
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-40 bg-bg/90 backdrop-blur border-b border-white/10">
+    <ul class="max-w-5xl mx-auto flex flex-wrap justify-center gap-6 py-3 text-sm sm:text-base">
+      <li><a href="#projects" class="hover:text-accent2">Projects</a></li>
+      <li><a href="#skills" class="hover:text-accent2">Skills</a></li>
+      <li><a href="#resume" class="hover:text-accent2">Resume</a></li>
+      <li><a href="#contact" class="hover:text-accent2">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto py-12 space-y-16 px-4 sm:px-6">
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Projects</h2>
+      <div id="projects-container" class="grid gap-6 sm:grid-cols-2"></div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Skills</h2>
+      <div id="skills-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- Résumé -->
+    <section id="resume" class="text-center">
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Resume</h2>
+      <a href="Ramon_Hernandez_IT_Resume.pdf" download
+         class="inline-block bg-accent2 text-bg px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
+        Download PDF
+      </a>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Contact</h2>
+      <form class="grid gap-4">
+        <input type="text" placeholder="Your Name" class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
+        <input type="email" placeholder="Your Email" class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
+        <textarea rows="4" placeholder="Your Message" class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required></textarea>
+        <button type="submit" class="py-3 bg-accent1 text-white rounded font-medium hover:bg-accent1/90 transition">
+          Send Message
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center text-text/70 border-t border-white/10">
+    © 2025 Ramon Hernandez | Powered by Tailwind CSS & JavaScript
+  </footer>
+
+</body>
+</html>
