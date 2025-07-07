@@ -1,73 +1,63 @@
-const projects = [
-  {
-    title: 'Password Generator GUI',
-    desc:  'Desktop tool with customizable settings built in Python and Tkinter.',
-    tech:  'Python · Tkinter'
-  },
-  {
-    title: 'Responsive Contact Form',
-    desc:  'Frontend form with live validation and accessibility focus.',
-    tech:  'HTML · CSS · JS · Bootstrap'
-  },
-  {
-    title: 'Shell Automation Toolkit',
-    desc:  'Bash scripts for auditing, backups, and diagnostics.',
-    tech:  'Bash · crontab'
+function generatePassword() {
+  const lower = 'abcdefghijklmnopqrstuvwxyz';
+  const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789';
+  const symbols = '!@#$%^&*()-_=+[]{}|;:,.<>?/';
+
+  let charset = '';
+  if (document.getElementById('useLower').checked) charset += lower;
+  if (document.getElementById('useUpper').checked) charset += upper;
+  if (document.getElementById('useNumbers').checked) charset += numbers;
+  if (document.getElementById('useSymbols').checked) charset += symbols;
+
+  const length = parseInt(document.getElementById('passLength').value);
+  document.getElementById('lengthDisplay').textContent = length;
+
+  if (charset === '' || isNaN(length)) {
+    document.getElementById('passwordOutput').textContent = 'Select at least one character type.';
+    updateStrength('', length);
+    return;
   }
-];
 
-const skills = [
-  'Python', 'JavaScript', 'Linux', 'Windows',
-  'Networking', 'DevOps', 'Bilingual (EN/ES)'
-];
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    password += charset[Math.floor(Math.random() * charset.length)];
+  }
 
-// Render Projects
-function renderProjects() {
-  const container = document.getElementById('projects-container');
-  container.innerHTML = projects.map(p => `
-    <div class="bg-soft p-6 rounded-lg shadow hover:shadow-lg transition">
-      <h3 class="text-2xl font-semibold mb-1">${p.title}</h3>
-      <p class="text-text/90 mb-2">${p.desc}</p>
-      <span class="text-sm text-mint">${p.tech}</span>
-    </div>
-  `).join('');
+  document.getElementById('passwordOutput').textContent = password;
+  updateStrength(password, length);
 }
 
-// Render Skills
-function renderSkills() {
-  const list = document.getElementById('skills-list');
-  list.innerHTML = skills.map(s => `
-    <span class="block bg-soft px-4 py-2 rounded text-center font-medium">${s}</span>
-  `).join('');
+// 🧠 Strength Estimator
+function updateStrength(pwd, len) {
+  let score = 0;
+  if (/[a-z]/.test(pwd)) score += 1;
+  if (/[A-Z]/.test(pwd)) score += 1;
+  if (/\d/.test(pwd)) score += 1;
+  if (/[^a-zA-Z0-9]/.test(pwd)) score += 1;
+  if (len >= 12) score += 1;
+
+  const meter = document.getElementById('strengthBar');
+  const label = document.getElementById('strengthLabel');
+
+  let width = score * 20;
+  meter.style.width = width + '%';
+
+  const descriptions = ['Weak', 'Fair', 'Moderate', 'Strong', 'Excellent', 'Elite'];
+  const colors = ['red', 'orange', 'yellow', 'lime', 'cyan', 'accent2'];
+  meter.style.backgroundColor = colors[Math.min(score, 5)];
+  label.textContent = `Strength: ${descriptions[Math.min(score, 5)]}`;
 }
 
-// Theme Toggle
-function initThemeToggle() {
-  const btn = document.getElementById('themeBtn');
-  const lbl = document.getElementById('themeLabel');
-  const root = document.documentElement;
+// 📋 Copy to Clipboard
+function copyPassword() {
+  const text = document.getElementById('passwordOutput').textContent;
+  if (!text || text.includes('appear here')) return;
 
-  // Load saved mode
-  let mode = localStorage.getItem('mode') || 'dark';
-  if (mode === 'dark') root.classList.add('dark');
-
-  updateLabel();
-
-  btn.addEventListener('click', () => {
-    root.classList.toggle('dark');
-    mode = root.classList.contains('dark') ? 'dark' : 'light';
-    localStorage.setItem('mode', mode);
-    updateLabel();
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('passwordOutput').textContent = '✅ Copied to clipboard!';
+    setTimeout(generatePassword, 800);
+  }).catch(() => {
+    document.getElementById('passwordOutput').textContent = '❌ Failed to copy.';
   });
-
-  function updateLabel() {
-    lbl.textContent = root.classList.contains('dark') ? 'Dark Mode' : 'Light Mode';
-    btn.textContent   = root.classList.contains('dark') ? '☀️' : '🌙';
-  }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderProjects();
-  renderSkills();
-  initThemeToggle();
-});
