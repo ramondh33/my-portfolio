@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ramon Hernandez | Portfolio</title>
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -24,7 +24,7 @@
     };
   </script>
 
-  <!-- JavaScript -->
+  <!-- Main JS -->
   <script src="script.js" defer></script>
 </head>
 <body class="bg-bg text-text font-sans transition-colors duration-300">
@@ -35,7 +35,7 @@
     <span id="themeLabel" class="text-sm">Dark Mode</span>
   </div>
 
-  <!-- Banner -->
+  <!-- Header -->
   <header class="py-10 bg-bg border-b border-white/10 text-center">
     <h1 class="text-4xl sm:text-5xl font-bold text-accent1">Ramon Hernandez</h1>
     <p class="mt-2 text-sm sm:text-base text-text/70">
@@ -47,31 +47,37 @@
   <nav class="sticky top-0 z-40 bg-bg/90 backdrop-blur border-b border-white/10">
     <ul class="max-w-5xl mx-auto flex flex-wrap justify-center gap-6 py-3 text-sm sm:text-base">
       <li><a href="#projects" class="hover:text-accent2">Projects</a></li>
-      <li><a href="#skills" class="hover:text-accent2">Skills</a></li>
-      <li><a href="#resume" class="hover:text-accent2">Résumé</a></li>
-      <li><a href="#contact" class="hover:text-accent2">Contact</a></li>
+      <li><a href="#skills"   class="hover:text-accent2">Skills</a></li>
+      <li><a href="#resume"   class="hover:text-accent2">Résumé</a></li>
+      <li><a href="#contact"  class="hover:text-accent2">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Main Content -->
   <main class="max-w-5xl mx-auto py-12 space-y-16 px-4 sm:px-6">
 
-    <!-- Projects -->
+    <!-- Projects & SecurePass Generator -->
     <section id="projects">
       <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Projects</h2>
       <div class="space-y-16">
 
-        <!-- 🔐 SecurePass Generator -->
-        <section id="securepass" class="space-y-6 scroll-mt-16">
+        <div id="securepass" class="space-y-6 scroll-mt-16">
           <h3 class="text-2xl font-bold text-accent1">SecurePass Generator</h3>
-          <p class="text-text/80">Create secure passwords with instant feedback and clipboard support.</p>
+          <p class="text-text/80">Generate secure passwords with instant strength feedback and clipboard support.</p>
 
           <div class="bg-soft p-6 rounded-lg space-y-4 shadow-lg transition-all duration-300">
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <label class="flex items-center gap-2"><input type="checkbox" id="useLower" checked /> Lowercase</label>
-              <label class="flex items-center gap-2"><input type="checkbox" id="useUpper" checked /> Uppercase</label>
-              <label class="flex items-center gap-2"><input type="checkbox" id="useNumbers" checked /> Numbers</label>
-              <label class="flex items-center gap-2"><input type="checkbox" id="useSymbols" /> Symbols</label>
+              <label class="flex items-center gap-2">
+                <input type="checkbox" id="useLower" checked /> Lowercase
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="checkbox" id="useUpper" checked /> Uppercase
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="checkbox" id="useNumbers" checked /> Numbers
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="checkbox" id="useSymbols" /> Symbols
+              </label>
             </div>
 
             <label class="block mt-4">
@@ -81,10 +87,12 @@
             </label>
 
             <div class="flex flex-wrap gap-4 mt-4">
-              <button onclick="generatePassword()" class="py-2 px-4 bg-accent1 text-white rounded hover:bg-accent1/90 transition">
+              <button onclick="generatePassword()"
+                      class="py-2 px-4 bg-accent1 text-white rounded hover:bg-accent1/90 transition">
                 Generate
               </button>
-              <button onclick="copyPassword()" class="py-2 px-4 bg-accent2 text-bg rounded hover:bg-accent2/90 transition">
+              <button onclick="copyPassword()"
+                      class="py-2 px-4 bg-accent2 text-bg rounded hover:bg-accent2/90 transition">
                 Copy to Clipboard
               </button>
             </div>
@@ -99,7 +107,7 @@
             </div>
             <p id="strengthLabel" class="text-sm text-text/70 mt-1">Strength: N/A</p>
           </div>
-        </section>
+        </div>
 
       </div>
     </section>
@@ -110,10 +118,11 @@
       <div id="skills-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
     </section>
 
-    <!-- Resume -->
+    <!-- Résumé -->
     <section id="resume" class="text-center">
       <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Résumé</h2>
-      <a href="Ramon_Hernandez_IT_Resume.pdf" download class="inline-block bg-accent2 text-bg px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
+      <a href="Ramon_Hernandez_IT_Resume.pdf" download
+         class="inline-block bg-accent2 text-bg px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
         Download PDF
       </a>
     </section>
@@ -122,10 +131,14 @@
     <section id="contact">
       <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Contact</h2>
       <form class="grid gap-4">
-        <input type="text" placeholder="Your Name" class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
-        <input type="email" placeholder="Your Email" class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
-        <textarea rows="4" placeholder="Your Message" class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required></textarea>
-        <button type="submit" class="py-3 bg-accent1 text-white rounded font-medium hover:bg-accent1/90 transition">
+        <input type="text" placeholder="Your Name"
+               class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
+        <input type="email" placeholder="Your Email"
+               class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
+        <textarea rows="4" placeholder="Your Message"
+                  class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required></textarea>
+        <button type="submit"
+                class="py-3 bg-accent1 text-white rounded font-medium hover:bg-accent1/90 transition">
           Send Message
         </button>
       </form>
