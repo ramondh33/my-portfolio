@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ramon Hernandez | Portfolio</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -13,18 +13,18 @@
       theme: {
         extend: {
           colors: {
-            bg: '#0a0f19',       // deep indigo
+            bg: '#0a0f19',
             text: '#fefefe',
             soft: '#1c2431',
-            accent1: '#ff6b00',  // mango-orange
-            accent2: '#00d4ff'   // electric cyan
+            accent1: '#ff6b00',
+            accent2: '#00d4ff'
           }
         }
       }
     };
   </script>
 
-  <!-- JS Render Logic -->
+  <!-- JavaScript -->
   <script src="script.js" defer></script>
 </head>
 <body class="bg-bg text-text font-sans transition-colors duration-300">
@@ -35,20 +35,20 @@
     <span id="themeLabel" class="text-sm">Dark Mode</span>
   </div>
 
-  <!-- Header -->
+  <!-- Banner -->
   <header class="py-10 bg-bg border-b border-white/10 text-center">
-  <h1 class="text-4xl sm:text-5xl font-bold text-accent1">Ramon Hernandez</h1>
-  <p class="mt-2 text-sm sm:text-base text-text/70">
-    IT Support &nbsp;•&nbsp; Full-Stack Development &nbsp;•&nbsp; System Administration
-  </p>
-</header>
+    <h1 class="text-4xl sm:text-5xl font-bold text-accent1">Ramon Hernandez</h1>
+    <p class="mt-2 text-sm sm:text-base text-text/70">
+      IT Support • Full-Stack Development • System Administration
+    </p>
+  </header>
 
   <!-- Navigation -->
   <nav class="sticky top-0 z-40 bg-bg/90 backdrop-blur border-b border-white/10">
     <ul class="max-w-5xl mx-auto flex flex-wrap justify-center gap-6 py-3 text-sm sm:text-base">
       <li><a href="#projects" class="hover:text-accent2">Projects</a></li>
       <li><a href="#skills" class="hover:text-accent2">Skills</a></li>
-      <li><a href="#resume" class="hover:text-accent2">Resume</a></li>
+      <li><a href="#resume" class="hover:text-accent2">Résumé</a></li>
       <li><a href="#contact" class="hover:text-accent2">Contact</a></li>
     </ul>
   </nav>
@@ -57,7 +57,12 @@
   <main class="max-w-5xl mx-auto py-12 space-y-16 px-4 sm:px-6">
 
     <!-- Projects -->
-    <section id="securepass" class="space-y-6 scroll-mt-16">
+    <section id="projects">
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Projects</h2>
+      <div class="space-y-16">
+
+        <!-- 🔐 SecurePass Generator -->
+        <section id="securepass" class="space-y-6 scroll-mt-16">
           <h3 class="text-2xl font-bold text-accent1">SecurePass Generator</h3>
           <p class="text-text/80">Create secure passwords with instant feedback and clipboard support.</p>
 
@@ -96,17 +101,19 @@
           </div>
         </section>
 
+      </div>
+    </section>
+
     <!-- Skills -->
     <section id="skills">
       <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Skills</h2>
       <div id="skills-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
     </section>
 
-    <!-- Résumé -->
+    <!-- Resume -->
     <section id="resume" class="text-center">
-      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Resume</h2>
-      <a href="Ramon_Hernandez_IT_Resume.pdf" download
-         class="inline-block bg-accent2 text-bg px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Résumé</h2>
+      <a href="Ramon_Hernandez_IT_Resume.pdf" download class="inline-block bg-accent2 text-bg px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
         Download PDF
       </a>
     </section>
