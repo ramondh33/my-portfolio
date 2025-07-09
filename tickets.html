@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ticket Dashboard | Ramon Hernandez</title>
+
+  <!-- Tailwind CSS CDN + Theme -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg:        '#ECEFF1',
+        text:      '#37474F',
+        cardBG:    '#FAFAFA',
+        border:    '#CFD8DC',
+        accent1:   '#1976D2',
+        accent2:   '#64B5F6',
+        darkBg:    '#1A1C1E',
+        darkText:  '#E5E5E5',
+        darkCard:  '#2D2F33',
+        darkBorder:'#3E4147'
+      }
+    }
+  }
+}
+
+  </script>
+
+  <script src="tickets.js" defer></script>
+</head>
+
+<body class="bg-bg text-text font-sans transition-colors duration-300
+             dark:bg-darkBg dark:text-darkText">
+
+  <div class="p-4">
+    <a href="index.html" class="text-accent2 hover:underline">← Back to Portfolio</a>
+  </div>
+
+  <header class="text-center py-6">
+    <h1 class="text-4xl font-bold text-accent2">Ticket Management</h1>
+    <p class="text-text/70 dark:text-darkText/70">Demo dashboard with fake tickets</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4">
+    <table class="w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-cardBG dark:bg-darkCard">
+          <th class="border border-border dark:border-darkBorder p-2">ID</th>
+          <th class="border border-border dark:border-darkBorder p-2">Title</th>
+          <th class="border border-border dark:border-darkBorder p-2">Status</th>
+          <th class="border border-border dark:border-darkBorder p-2">Assigned To</th>
+          <th class="border border-border dark:border-darkBorder p-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="ticketBody"></tbody>
+    </table>
+  </main>
+
+</body>
+</html>

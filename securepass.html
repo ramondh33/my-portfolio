@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SecurePass Generator</title>
+
+  <!-- Tailwind + Theme Setup -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#ECEFF1',
+            text: '#37474F',
+            cardBG: '#FAFAFA',
+            border: '#CFD8DC',
+            accent1: '#1976D2',
+            accent2: '#64B5F6',
+            darkBg: '#1A1C1E',
+            darkText: '#E5E5E5',
+            darkCard: '#2D2F33',
+            darkBorder: '#3E4147'
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    if (localStorage.themeMode === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+
+<body class="bg-bg text-text dark:bg-darkBg dark:text-darkText font-sans transition-colors duration-300">
+    <div class="bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded-lg shadow p-6 space-y-4">
+        <div class="p-4">
+            <a href="index.html" class="text-accent2 hover:underline">← Back to Portfolio</a>
+        </div>
+  <header class="text-center py-8 border-b border-border dark:border-darkBorder">
+    <h1 class="text-3xl font-bold text-accent1">SecurePass Generator</h1>
+    <p class="text-sm text-text/70 dark:text-darkText/70">Customize and generate strong passwords</p>
+  </header>
+
+  <main class="max-w-xl mx-auto p-6 space-y-6">
+    
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <label><input type="checkbox" id="useLower" checked /> Lowercase</label>
+        <label><input type="checkbox" id="useUpper" checked /> Uppercase</label>
+        <label><input type="checkbox" id="useNumbers" checked /> Numbers</label>
+        <label><input type="checkbox" id="useSymbols" /> Symbols</label>
+      </div>
+
+      <label class="block mt-2">
+        <span>Password Length</span>
+        <input type="range" id="passLength" min="6" max="32" value="12" class="w-full accent-accent2" />
+        <span class="text-sm">Length: <span id="lengthDisplay">12</span></span>
+      </label>
+
+      <div class="flex gap-3">
+        <button onclick="generatePassword()" class="px-4 py-2 bg-accent1 text-white rounded">Generate</button>
+        <button onclick="copyPassword()" class="px-4 py-2 bg-accent2 text-white rounded">Copy</button>
+      </div>
+
+      <div id="passwordOutput" class="bg-bg dark:bg-darkBg border border-accent2 p-3 rounded font-mono">
+        Your password will appear here…
+      </div>
+
+      <div id="strengthMeter" class="h-2 rounded-full bg-text/10 dark:bg-darkText/10 overflow-hidden">
+        <div id="strengthBar" class="h-full w-0 bg-accent2 transition-all duration-500 ease-in-out"></div>
+      </div>
+      <p id="strengthLabel" class="text-sm text-text/70 dark:text-darkText/70">Strength: N/A</p>
+    </div>
+  </main>
+
+  <script>
+    const lower = 'abcdefghijklmnopqrstuvwxyz';
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums  = '0123456789';
+    const syms  = '!@#$%^&*()-_=+[]{}|;:,.<>?/';
+
+    const useLower  = document.getElementById('useLower');
+    const useUpper  = document.getElementById('useUpper');
+    const useNumbers= document.getElementById('useNumbers');
+    const useSymbols= document.getElementById('useSymbols');
+    const passLength= document.getElementById('passLength');
+    const lengthDisplay = document.getElementById('lengthDisplay');
+    const passwordOutput= document.getElementById('passwordOutput');
+    const strengthBar   = document.getElementById('strengthBar');
+    const strengthLabel = document.getElementById('strengthLabel');
+
+    function generatePassword() {
+      let charset = '';
+      if (useLower.checked)   charset += lower;
+      if (useUpper.checked)   charset += upper;
+      if (useNumbers.checked) charset += nums;
+      if (useSymbols.checked) charset += syms;
+
+      const len = parseInt(passLength.value);
+      lengthDisplay.textContent = len;
+      if (!charset) {
+        passwordOutput.textContent = 'Select character types.';
+        updateStrength('', len);
+        return;
+      }
+
+      let pwd = '';
+      for (let i = 0; i < len; i++) {
+        pwd += charset[Math.floor(Math.random() * charset.length)];
+      }
+      passwordOutput.textContent = pwd;
+      updateStrength(pwd, len);
+    }
+
+    function updateStrength(pwd, len) {
+      let score = 0;
+      if (/[a-z]/.test(pwd)) score++;
+      if (/[A-Z]/.test(pwd)) score++;
+      if (/\d/.test(pwd)) score++;
+      if (/[^a-zA-Z0-9]/.test(pwd)) score++;
+      if (len >= 12) score++;
+
+      strengthBar.style.width = `${score * 20}%`;
+      strengthBar.style.backgroundColor =
+        ['#ff0000','#ffa500','#f0e68c','#32cd32','#00ffff','#1976D2'][Math.min(score,5)];
+      strengthLabel.textContent =
+        `Strength: ${['Weak','Fair','Moderate','Strong','Excellent','Elite'][Math.min(score,5)]}`;
+    }
+
+    function copyPassword() {
+      navigator.clipboard.writeText(passwordOutput.textContent);
+      passwordOutput.textContent = '✅ Copied!';
+      setTimeout(generatePassword, 1000);
+    }
+  </script>
+</body>
+</html>

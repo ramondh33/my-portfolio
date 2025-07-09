@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ramon Hernandez | Portfolio</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS + Soft Theme -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -13,130 +13,108 @@
       theme: {
         extend: {
           colors: {
-            bg: '#0a0f19',
-            text: '#fefefe',
-            soft: '#1c2431',
-            accent1: '#ff6b00',
-            accent2: '#00d4ff'
+            bg: '#ECEFF1',
+            text: '#37474F',
+            cardBG: '#FAFAFA',
+            border: '#CFD8DC',
+            accent1: '#1976D2',
+            accent2: '#64B5F6',
+            darkBg: '#1A1C1E',
+            darkText: '#E5E5E5',
+            darkCard: '#2D2F33',
+            darkBorder: '#3E4147'
           }
         }
       }
     };
   </script>
-
-  <!-- Main JS -->
   <script src="script.js" defer></script>
 </head>
-<body class="bg-bg text-text font-sans transition-colors duration-300">
+
+<body class="bg-bg text-text dark:bg-darkBg dark:text-darkText font-sans transition">
 
   <!-- Theme Toggle -->
-  <div class="fixed top-4 right-4 z-50 flex items-center space-x-2">
-    <button id="themeBtn" class="p-2 rounded bg-soft hover:bg-accent2 transition">🌙</button>
-    <span id="themeLabel" class="text-sm">Dark Mode</span>
+  <div class="fixed top-4 right-4 z-50">
+    <button id="themeBtn" class="p-2 bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded shadow hover:bg-accent2/10 transition">
+      🌙
+    </button>
   </div>
 
   <!-- Header -->
-  <header class="py-10 bg-bg border-b border-white/10 text-center">
-    <h1 class="text-4xl sm:text-5xl font-bold text-accent1">Ramon Hernandez</h1>
-    <p class="mt-2 text-sm sm:text-base text-text/70">
-      IT Support • Full-Stack Development • System Administration
-    </p>
+  <header class="text-center py-10 border-b border-border dark:border-darkBorder">
+    <h1 class="text-4xl font-bold text-accent1">Ramon Hernandez</h1>
+    <p class="mt-2 text-text/70 dark:text-darkText/70">IT Support • Full-Stack Development • System Administration</p>
   </header>
 
-  <!-- Navigation -->
-  <nav class="sticky top-0 z-40 bg-bg/90 backdrop-blur border-b border-white/10">
-    <ul class="max-w-5xl mx-auto flex flex-wrap justify-center gap-6 py-3 text-sm sm:text-base">
-      <li><a href="#projects" class="hover:text-accent2">Projects</a></li>
-      <li><a href="#skills"   class="hover:text-accent2">Skills</a></li>
-      <li><a href="#resume"   class="hover:text-accent2">Résumé</a></li>
-      <li><a href="#contact"  class="hover:text-accent2">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto py-12 px-4 space-y-16">
 
-  <main class="max-w-5xl mx-auto py-12 space-y-16 px-4 sm:px-6">
+    <!-- Projects Gallery -->
+    <section>
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-8">Projects</h2>
 
-    <!-- Projects & SecurePass Generator -->
-    <section id="projects">
-      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Projects</h2>
-      <div class="space-y-16">
-
-        <div id="securepass" class="space-y-6 scroll-mt-16">
-          <h3 class="text-2xl font-bold text-accent1">SecurePass Generator</h3>
-          <p class="text-text/80">Generate secure passwords with instant strength feedback and clipboard support.</p>
-
-          <div class="bg-soft p-6 rounded-lg space-y-4 shadow-lg transition-all duration-300">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <label class="flex items-center gap-2">
-                <input type="checkbox" id="useLower" checked /> Lowercase
-              </label>
-              <label class="flex items-center gap-2">
-                <input type="checkbox" id="useUpper" checked /> Uppercase
-              </label>
-              <label class="flex items-center gap-2">
-                <input type="checkbox" id="useNumbers" checked /> Numbers
-              </label>
-              <label class="flex items-center gap-2">
-                <input type="checkbox" id="useSymbols" /> Symbols
-              </label>
+      <div class="grid gap-6 md:grid-cols-3">
+        <!-- One card template -->
+        <div class="project-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:scale-[1.02] bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded-lg shadow overflow-hidden">
+          <a href="securepass.html" class="block">
+            <img src="thumbnails/securepass.png" alt="SecurePass" class="w-full h-32 object-cover">
+            <div class="p-4 space-y-1">
+              <h3 class="text-lg font-bold text-accent1">SecurePass Generator</h3>
+              <p class="text-sm text-text/70 dark:text-darkText/70">Generate secure passwords with custom rules and feedback.</p>
+              <span class="inline-block mt-2 px-3 py-1 bg-accent1 text-white text-sm rounded hover:bg-accent1/90 transition">Try It</span>
             </div>
-
-            <label class="block mt-4">
-              <span class="block mb-1">Password Length</span>
-              <input type="range" id="passLength" min="6" max="32" value="12" class="w-full accent-accent2" />
-              <span class="block text-sm mt-1">Length: <span id="lengthDisplay">12</span></span>
-            </label>
-
-            <div class="flex flex-wrap gap-4 mt-4">
-              <button onclick="generatePassword()"
-                      class="py-2 px-4 bg-accent1 text-white rounded hover:bg-accent1/90 transition">
-                Generate
-              </button>
-              <button onclick="copyPassword()"
-                      class="py-2 px-4 bg-accent2 text-bg rounded hover:bg-accent2/90 transition">
-                Copy to Clipboard
-              </button>
-            </div>
-
-            <div id="passwordOutput"
-                 class="mt-4 bg-bg border border-accent2 text-lg p-3 rounded font-mono select-all break-words transition-all duration-300">
-              Your password will appear here…
-            </div>
-
-            <div id="strengthMeter" class="h-2 rounded-full bg-white/10 overflow-hidden mt-2">
-              <div id="strengthBar" class="h-full bg-accent1 w-0 transition-all duration-500 ease-in-out"></div>
-            </div>
-            <p id="strengthLabel" class="text-sm text-text/70 mt-1">Strength: N/A</p>
-          </div>
+          </a>
         </div>
 
+        <div class="project-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:scale-[1.02] bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded-lg shadow overflow-hidden">
+          <a href="todo.html" class="block">
+            <img src="thumbnails/todo.png" alt="To-Do List" class="w-full h-32 object-cover">
+            <div class="p-4 space-y-1">
+              <h3 class="text-lg font-bold text-accent1">To-Do List</h3>
+              <p class="text-sm text-text/70 dark:text-darkText/70">Simple checklist app with add, complete, delete functions.</p>
+              <span class="inline-block mt-2 px-3 py-1 bg-accent1 text-white text-sm rounded hover:bg-accent1/90 transition">Try It</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="project-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:scale-[1.02] bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded-lg shadow overflow-hidden">
+          <a href="tickets.html" class="block">
+            <img src="thumbnails/tickets.png" alt="Ticket Manager" class="w-full h-32 object-cover">
+            <div class="p-4 space-y-1">
+              <h3 class="text-lg font-bold text-accent1">Ticket Dashboard</h3>
+              <p class="text-sm text-text/70 dark:text-darkText/70">View and edit mock support tickets with status and assignment.</p>
+              <span class="inline-block mt-2 px-3 py-1 bg-accent1 text-white text-sm rounded hover:bg-accent1/90 transition">Try It</span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Skills -->
+    <!-- Skills Section -->
     <section id="skills">
       <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Skills</h2>
       <div id="skills-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
     </section>
 
-    <!-- Résumé -->
+    <!-- Resume Section -->
     <section id="resume" class="text-center">
-      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Résumé</h2>
+      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Resume</h2>
       <a href="Ramon_Hernandez_IT_Resume.pdf" download
-         class="inline-block bg-accent2 text-bg px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
+         class="inline-block bg-accent2 text-white px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
         Download PDF
       </a>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact Section -->
     <section id="contact">
       <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Contact</h2>
-      <form class="grid gap-4">
+      <form class="grid gap-4 max-w-xl mx-auto">
         <input type="text" placeholder="Your Name"
-               class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
+               class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none" required />
         <input type="email" placeholder="Your Email"
-               class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required />
+               class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none" required />
         <textarea rows="4" placeholder="Your Message"
-                  class="p-3 bg-soft rounded border border-accent1 focus:outline-none" required></textarea>
+                  class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none" required></textarea>
         <button type="submit"
                 class="py-3 bg-accent1 text-white rounded font-medium hover:bg-accent1/90 transition">
           Send Message
@@ -146,10 +124,8 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer class="py-8 text-center text-text/70 border-t border-white/10">
-    © 2025 Ramon Hernandez | Powered by Tailwind CSS & JavaScript
+  <footer class="text-center py-8 text-text/60 dark:text-darkText/60 border-t border-border dark:border-darkBorder">
+    © 2025 Ramon Hernandez | Tailwind CSS & JavaScript Portfolio
   </footer>
-
 </body>
 </html>

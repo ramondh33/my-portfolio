@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>To-Do List | Ramon Hernandez</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: '#ECEFF1',
+            text: '#37474F',
+            cardBG: '#FAFAFA',
+            border: '#CFD8DC',
+            accent1: '#1976D2',
+            accent2: '#64B5F6',
+            darkBg: '#1A1C1E',
+            darkText: '#E5E5E5',
+            darkCard: '#2D2F33',
+            darkBorder: '#3E4147'
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    if (localStorage.themeMode === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+
+<body class="bg-bg text-text dark:bg-darkBg dark:text-darkText font-sans transition-colors duration-300 p-6">
+<div class="p-4">
+    <a href="index.html" class="text-accent2 hover:underline">← Back to Portfolio</a>
+  </div>
+  <header class="text-center mb-8 border-b border-border dark:border-darkBorder pb-4">
+    <h1 class="text-3xl font-bold text-accent1">To-Do List</h1>
+    <p class="text-sm text-text/70 dark:text-darkText/70">Manage tasks simply and cleanly</p>
+  </header>
+
+  <main class="max-w-xl mx-auto space-y-6">
+
+    <div class="flex gap-3">
+      <input id="todoInput" type="text" placeholder="New task…" autofocus
+             class="flex-1 p-2 bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded focus:outline-none" />
+      <button id="addTodoBtn"
+              class="px-4 py-2 bg-accent1 text-white rounded hover:bg-accent1/90 transition">
+        Add
+      </button>
+    </div>
+
+    <ul id="todoList" class="space-y-3 list-none"></ul>
+
+  </main>
+
+  <footer class="mt-12 text-center text-sm text-text/60 dark:text-darkText/50">
+    © 2025 Ramon Hernandez | Tailwind Demo
+  </footer>
+
+  <script>
+    let todos = [];
+
+    const todoInput = document.getElementById('todoInput');
+    const todoList  = document.getElementById('todoList');
+    const addBtn    = document.get
