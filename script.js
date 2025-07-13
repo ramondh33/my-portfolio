@@ -17,6 +17,36 @@ function initThemeToggle() {
     root.classList.toggle('dark', m === 'dark');
   }
 }
+const skills = [
+  'Python',
+  'JavaScript',
+  'Linux',
+  'Windows',
+  'Networking',
+  'DevOps',
+  'Bilingual (EN/ES)',
+  'Tailwind CSS',
+  'Bootstrap',
+  'System Administration'
+];
+
+function renderSkills() {
+  const container = document.getElementById('skills-list');
+  if (!container) return;
+
+  container.innerHTML = skills.map(skill => `
+    <span class="block px-4 py-2 text-center font-medium
+                 bg-cardBG border border-border rounded
+                 dark:bg-darkCard dark:border-darkBorder">
+      ${skill}
+    </span>
+  `).join('');
+}
+
+// Invoke this in DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  renderSkills();
+});
 
 function initProjectAnimations() {
   const cards = document.querySelectorAll('.project-card');

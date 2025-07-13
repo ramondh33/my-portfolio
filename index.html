@@ -46,6 +46,16 @@
     <p class="mt-2 text-text/70 dark:text-darkText/70">IT Support • Full-Stack Development • System Administration</p>
   </header>
 
+  <!-- Nav -->
+  <nav class="sticky top-0 z-40 bg-cyberBg/90 backdrop-blur border-b border-cyberBorder">
+    <ul class="max-w-5xl mx-auto flex flex-wrap justify-center gap-6 py-3 text-sm sm:text-base">
+      <li><a href="#projects" class="hover:text-accent2">Projects</a></li>
+      <li><a href="#skills"   class="hover:text-accent2">Skills</a></li>
+      <li><a href="resume.html" class="hover:text-accent2">Resume</a></li> <!-- Link updated -->
+      <li><a href="#contact"  class="hover:text-accent2">Contact</a></li>
+    </ul>
+  </nav>
+
   <!-- Main Content -->
   <main class="max-w-6xl mx-auto py-12 px-4 space-y-16">
 
@@ -57,7 +67,7 @@
         <!-- One card template -->
         <div class="project-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:scale-[1.02] bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded-lg shadow overflow-hidden">
           <a href="securepass.html" class="block">
-            <img src="thumbnails/securepass.png" alt="SecurePass" class="w-full h-32 object-cover">
+            <img src="thumbnails/passGen.png" alt="SecurePass" class="w-full h-32 object-cover">
             <div class="p-4 space-y-1">
               <h3 class="text-lg font-bold text-accent1">SecurePass Generator</h3>
               <p class="text-sm text-text/70 dark:text-darkText/70">Generate secure passwords with custom rules and feedback.</p>
@@ -68,7 +78,7 @@
 
         <div class="project-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:scale-[1.02] bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded-lg shadow overflow-hidden">
           <a href="todo.html" class="block">
-            <img src="thumbnails/todo.png" alt="To-Do List" class="w-full h-32 object-cover">
+            <img src="thumbnails/todoList.png" alt="To-Do List" class="w-full h-32 object-cover">
             <div class="p-4 space-y-1">
               <h3 class="text-lg font-bold text-accent1">To-Do List</h3>
               <p class="text-sm text-text/70 dark:text-darkText/70">Simple checklist app with add, complete, delete functions.</p>
@@ -79,7 +89,7 @@
 
         <div class="project-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:scale-[1.02] bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded-lg shadow overflow-hidden">
           <a href="tickets.html" class="block">
-            <img src="thumbnails/tickets.png" alt="Ticket Manager" class="w-full h-32 object-cover">
+            <img src="thumbnails/ticketSys.png" alt="Ticket Manager" class="w-full h-32 object-cover">
             <div class="p-4 space-y-1">
               <h3 class="text-lg font-bold text-accent1">Ticket Dashboard</h3>
               <p class="text-sm text-text/70 dark:text-darkText/70">View and edit mock support tickets with status and assignment.</p>
@@ -96,30 +106,22 @@
       <div id="skills-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
     </section>
 
-    <!-- Resume Section -->
-    <section id="resume" class="text-center">
-      <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Resume</h2>
-      <a href="Ramon_Hernandez_IT_Resume.pdf" download
-         class="inline-block bg-accent2 text-white px-6 py-3 rounded font-medium hover:bg-accent2/90 transition">
-        Download PDF
-      </a>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact">
       <h2 class="text-3xl font-bold border-b-4 border-accent1 inline-block mb-6">Contact</h2>
-      <form class="grid gap-4 max-w-xl mx-auto">
-        <input type="text" placeholder="Your Name"
-               class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none" required />
-        <input type="email" placeholder="Your Email"
-               class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none" required />
-        <textarea rows="4" placeholder="Your Message"
-                  class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none" required></textarea>
-        <button type="submit"
-                class="py-3 bg-accent1 text-white rounded font-medium hover:bg-accent1/90 transition">
-          Send Message
-        </button>
-      </form>
+      <form action="https://formspree.io/f/mpwrvnnr" method="POST" class="grid gap-4">
+  <input type="text" name="name" placeholder="Your Name" required
+         class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none"/>
+  <input type="email" name="email" placeholder="Your Email" required
+         class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none"/>
+  <textarea name="message" rows="4" placeholder="Your Message" required
+            class="p-3 bg-cardBG border border-border dark:bg-darkCard dark:border-darkBorder rounded focus:outline-none"></textarea>
+  <button type="submit"
+          class="py-3 bg-accent1 text-white rounded font-medium hover:bg-accent1/90 transition">
+    Send Message
+  </button>
+</form>
+
     </section>
 
   </main>
@@ -127,5 +129,24 @@
   <footer class="text-center py-8 text-text/60 dark:text-darkText/60 border-t border-border dark:border-darkBorder">
     © 2025 Ramon Hernandez | Tailwind CSS & JavaScript Portfolio
   </footer>
+  <script>
+  const form = document.querySelector("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      alert("Thanks! Your message was sent.");
+      form.reset();
+    } else {
+      alert("Oops, there was a problem.");
+    }
+  });
+</script>
+
 </body>
 </html>

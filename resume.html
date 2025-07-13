@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resume | Ramon Hernandez</title>
+
+  <!-- Tailwind CSS + Theme -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg:        '#ECEFF1',
+            text:      '#37474F',
+            cardBG:    '#FAFAFA',
+            border:    '#CFD8DC',
+            accent1:   '#1976D2',
+            accent2:   '#64B5F6',
+            darkBg:    '#1A1C1E',
+            darkText:  '#E5E5E5',
+            darkCard:  '#2D2F33',
+            darkBorder:'#3E4147'
+          }
+        }
+      }
+    };
+  </script>
+  <script>
+    if (localStorage.themeMode === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+
+<body class="bg-bg text-text dark:bg-darkBg dark:text-darkText font-sans transition px-6 py-10">
+    <div class="p-4">
+            <a href="index.html" class="text-accent2 hover:underline">← Back to Portfolio</a>
+        </div>
+
+  <!-- Resume Header -->
+  <header class="text-center mb-8">
+    <h1 class="text-4xl font-bold text-accent1">Ramon Hernandez</h1>
+    <p class="text-sm text-text/70 dark:text-darkText/70">Guymon, OK · <a href="https://linkedin.com/in/ramon-hernandez-88297a184" target="_blank" class="text-accent2 hover:underline">LinkedIn Profile</a></p>
+  </header>
+
+  <main class="max-w-4xl mx-auto space-y-10">
+
+    <!-- Summary -->
+    <section>
+      <h2 class="text-xl font-bold border-b border-accent1 pb-1 mb-3">Professional Summary</h2>
+      <p>Motivated and tech-savvy IT professional with experience in technical support, full-stack development, and system administration. Skilled in troubleshooting, team leadership, and bilingual communication (English/Spanish). Actively seeking work in the tech industry to apply technical strengths and grow within a dynamic team.</p>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h2 class="text-xl font-bold border-b border-accent1 pb-1 mb-3">Technical Skills</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
+        <span>Python</span>
+        <span>JavaScript</span>
+        <span>Shell Scripting</span>
+        <span>Linux</span>
+        <span>Windows Server</span>
+        <span>Active Directory</span>
+        <span>VMware</span>
+        <span>DNS/DHCP/VPN</span>
+        <span>Git</span>
+        <span>Bootstrap</span>
+        <span>Microsoft Dynamics AX</span>
+        <span>TCP/IP</span>
+        <span>System Administration</span>
+        <span>Customer Service</span>
+        <span>Bilingual (EN/ES)</span>
+        <span>Team Leadership</span>
+        <span>Time Management</span>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section>
+      <h2 class="text-xl font-bold border-b border-accent1 pb-1 mb-3">Certifications</h2>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        <li>Google IT Support Specialization – Coursera</li>
+        <li>Coursera Verified Certificates – DY6BBC9S3YNL, A4ERLG4G4MCB (Various IT topics)</li>
+      </ul>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <h2 class="text-xl font-bold border-b border-accent1 pb-1 mb-3">Technical Experience</h2>
+      <div class="text-sm space-y-3">
+        <div>
+          <strong>System & Technical Support</strong> – Freelance / Various Locations (2025–Present)<br/>
+          <ul class="list-disc pl-5">
+            <li>Assisted with system installations and troubleshooting.</li>
+            <li>Configured networks including DNS, DHCP, and VPN.</li>
+            <li>Provided OS reinstallations and basic cybersecurity hygiene.</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Full-Stack Development</strong> – Remote / Self-Taught (2025–Present)<br/>
+          <ul class="list-disc pl-5">
+            <li>Built web apps using JavaScript, Python, Bootstrap, and Tailwind.</li>
+            <li>Used Git & GitHub for version control.</li>
+            <li>Completed hands-on labs via Coursera IT courses.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2 class="text-xl font-bold border-b border-accent1 pb-1 mb-3">Education</h2>
+      <p class="text-sm">High School Diploma – Lindsey Hopkins Technical Education Center, Miami, FL (2006)</p>
+    </section>
+
+    <!-- Languages & Additional -->
+    <section>
+      <h2 class="text-xl font-bold border-b border-accent1 pb-1 mb-3">Other Information</h2>
+      <ul class="list-disc pl-5 text-sm space-y-1">
+        <li>Languages: English (Fluent), Spanish (Fluent)</li>
+        <li>Driver's License – Valid until 2030</li>
+        <li>CPR Certified</li>
+        <li>Forklift Certified</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center mt-12 text-sm text-text/60 dark:text-darkText/50">
+    Updated Resume July 2025· Actively seeking IT roles · Portfolio: <a href="index.html" class="text-accent2 hover:underline">Return Home</a>
+  </footer>
+</body>
+</html>

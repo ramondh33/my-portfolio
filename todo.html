@@ -36,8 +36,8 @@
 
 <body class="bg-bg text-text dark:bg-darkBg dark:text-darkText font-sans transition-colors duration-300 p-6">
 <div class="p-4">
-    <a href="index.html" class="text-accent2 hover:underline">← Back to Portfolio</a>
-  </div>
+            <a href="index.html" class="text-accent2 hover:underline">← Back to Portfolio</a>
+        </div>
   <header class="text-center mb-8 border-b border-border dark:border-darkBorder pb-4">
     <h1 class="text-3xl font-bold text-accent1">To-Do List</h1>
     <p class="text-sm text-text/70 dark:text-darkText/70">Manage tasks simply and cleanly</p>
@@ -64,7 +64,44 @@
 
   <script>
     let todos = [];
-
     const todoInput = document.getElementById('todoInput');
     const todoList  = document.getElementById('todoList');
-    const addBtn    = document.get
+    const addBtn    = document.getElementById('addTodoBtn');
+
+    addBtn.addEventListener('click', () => {
+      const task = todoInput.value.trim();
+      if (!task) return;
+      todos.push({ text: task, done: false });
+      todoInput.value = '';
+      renderTodos();
+    });
+
+    function renderTodos() {
+      todoList.innerHTML = todos.map((t, i) => `
+        <li class="flex justify-between items-center bg-cardBG dark:bg-darkCard border border-border dark:border-darkBorder rounded px-4 py-2">
+          <label class="flex gap-2 items-center">
+            <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTodo(${i})"/>
+            <span class="${t.done ? 'line-through text-text/50 dark:text-darkText/50' : ''}">${t.text}</span>
+          </label>
+          <button onclick="deleteTodo(${i})" class="text-red-500 hover:text-red-700 text-xl">×</button>
+        </li>
+      `).join('');
+    }
+
+    function toggleTodo(i) {
+      todos[i].done = !todos[i].done;
+      renderTodos();
+    }
+
+    function deleteTodo(i) {
+      todos.splice(i, 1);
+      renderTodos();
+    }
+
+    // Optional: Add Enter key support
+    todoInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addBtn.click();
+    });
+  </script>
+</body>
+</html>
