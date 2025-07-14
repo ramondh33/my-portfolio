@@ -1,3 +1,5 @@
+ramonresume.netlify.app
+
 Welcome to my personal portfolio—a curated space where I showcase my technical proficiency and creative projects across IT support, full-stack web development, system administration, and cybersecurity.
 
 Every tool and demo featured here—from password generators to ticket management systems—is built with modern design principles and practical, user-friendly interfaces. I aim to demonstrate not just what I’ve learned, but how I solve problems and build intuitive solutions from the ground up.
